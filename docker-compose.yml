@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  document-service:
+    build: .
+    depends_on:
+      - db
+    container_name: documents-service
+    ports:
+      - '8080:8080'
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    container_name: db
+    ports:
+      - '5432:5432'
