@@ -1,4 +1,5 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { TemplateModule } from './template/template.module';
 
 @Module({})
 export class AppModule {
@@ -9,7 +10,7 @@ export class AppModule {
 
     return {
       module: AppModule,
-      imports: [InfrastructureModule],
+      imports: [TemplateModule, InfrastructureModule],
     };
   }
 }

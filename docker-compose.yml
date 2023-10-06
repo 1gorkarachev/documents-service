@@ -3,6 +3,12 @@ version: '3'
 services:
   document-service:
     build: .
+    environment:
+      CONFIG_ENV: ${CONFIG_ENV}
+      HTTP_HOST: ${HTTP_HOST}
+      HTTP_PORT: ${HTTP_PORT}
+      PG_WRITE_CONNECTION_STRING: ${PG_WRITE_CONNECTION_STRING}
+      PG_READ_CONNECTION_STRING: ${PG_READ_CONNECTION_STRING}
     depends_on:
       - db
     container_name: documents-service
