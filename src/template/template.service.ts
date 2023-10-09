@@ -19,14 +19,16 @@ export class TemplateService {
     page,
     size,
   }: SearchTemplatesDto): Promise<TemplateEntity[]> {
-    return await this.searchTemplateQuery.ask({
+    return await this.searchTemplateQuery.execute({
       skip: page,
       take: size,
     });
   }
 
   public async findOne(id: number): Promise<TemplateEntity> {
-    const templates = await this.searchTemplateQuery.ask({ where: { id: id } });
+    const templates = await this.searchTemplateQuery.execute({
+      where: { id: id },
+    });
 
     return templates[0];
   }
