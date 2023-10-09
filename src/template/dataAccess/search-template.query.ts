@@ -16,7 +16,7 @@ export class SearchTemplateQuery {
     private readonly templateRepository: Repository<TemplateEntity>,
   ) {}
 
-  public async ask({
+  public async execute({
     where,
     skip,
     take,
