@@ -1,9 +1,3 @@
-import { IsOptional } from 'class-validator';
+import { SearchDto } from 'src/common/dto';
 
-export class SearchTemplatesDto {
-  @IsOptional()
-  page?: number;
-
-  @IsOptional()
-  size?: number;
-}
+export class SearchTemplatesDto extends SearchDto {}

@@ -1,5 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { TemplateModule } from './template/template.module';
+import { DocumentsModule } from './document/document.module';
 
 @Module({})
 export class AppModule {
@@ -10,7 +11,7 @@ export class AppModule {
 
     return {
       module: AppModule,
-      imports: [TemplateModule, InfrastructureModule],
+      imports: [TemplateModule, DocumentsModule, InfrastructureModule],
     };
   }
 }

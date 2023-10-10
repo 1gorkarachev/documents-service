@@ -8,17 +8,19 @@ export class TemplateController {
   public constructor(private readonly templateService: TemplateService) {}
 
   @Get()
-  findAll(@Query() params: SearchTemplatesDto): Promise<TemplateEntity[]> {
+  public findAll(
+    @Query() params: SearchTemplatesDto,
+  ): Promise<TemplateEntity[]> {
     return this.templateService.find(params);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<TemplateEntity> {
-    return this.templateService.findOne(parseInt(id));
+  public findOne(@Param('id') id: number): Promise<TemplateEntity> {
+    return this.templateService.findOne(id);
   }
 
   @Post()
-  create(@Body() body: CreateTemplateDto): Promise<TemplateEntity> {
+  public create(@Body() body: CreateTemplateDto): Promise<TemplateEntity> {
     return this.templateService.create(body);
   }
 }

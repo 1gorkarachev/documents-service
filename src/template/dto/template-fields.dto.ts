@@ -1,10 +1,5 @@
 import { IsDefined, IsEnum, IsString } from 'class-validator';
-
-enum FieldTypeEnum {
-  string = 'string',
-  number = 'number',
-  date = 'date',
-}
+import { FieldTypeEnum } from 'src/common/enums';
 
 export class TemplateFieldsDto {
   @IsDefined()
