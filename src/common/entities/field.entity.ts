@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { DocumentFieldEntity } from 'src/document/dataAccess/entities';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('fields')
 export class FieldEntity {
@@ -14,4 +21,8 @@ export class FieldEntity {
 
   @Column()
   type: string;
+
+  @OneToMany(() => DocumentFieldEntity, (document) => document.document)
+  @JoinColumn({ name: 'id', referencedColumnName: 'field_id' })
+  public documents: DocumentFieldEntity[];
 }

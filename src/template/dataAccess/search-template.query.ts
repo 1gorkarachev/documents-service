@@ -2,7 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { TemplateEntity } from './entities';
 import { Repository } from 'typeorm';
 
-export interface ISearchTemplatesParams {
+interface ISearchTemplatesParams {
   where?: {
     id?: number;
   };
@@ -16,12 +16,12 @@ export class SearchTemplateQuery {
     private readonly templateRepository: Repository<TemplateEntity>,
   ) {}
 
-  public async execute({
+  public execute({
     where,
     skip,
     take,
   }: ISearchTemplatesParams): Promise<TemplateEntity[]> {
-    return await this.templateRepository.find({
+    return this.templateRepository.find({
       where,
       relations: ['fields'],
       take: take ?? undefined,

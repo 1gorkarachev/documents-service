@@ -5,6 +5,13 @@ export class CreateTemplateFieldsTable1696764609048
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
+        CREATE TABLE "templates" (
+            "id"   SERIAL       NOT NULL,
+            "name" VARCHAR(255) NOT NULL,
+
+            CONSTRAINT "PK_templates" PRIMARY KEY ("id")
+        );
+
         CREATE TYPE field_type AS ENUM ('string', 'number', 'date');
 
         CREATE TABLE "fields" (
@@ -34,6 +41,8 @@ export class CreateTemplateFieldsTable1696764609048
         DROP TABLE "fields";
 
         DROP TYPE field_type;
+
+        DROP TABLE "templates";
     `);
   }
 }

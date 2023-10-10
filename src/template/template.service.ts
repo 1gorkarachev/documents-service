@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTemplateDto, SearchTemplatesDto } from './dto';
 import { CreateTemplateCommand } from './dataAccess';
 import { TemplateEntity } from './dataAccess/entities';
@@ -11,25 +11,24 @@ export class TemplateService {
     private readonly searchTemplateQuery: SearchTemplateQuery,
   ) {}
 
-  public async create(data: CreateTemplateDto): Promise<TemplateEntity> {
+  public create(data: CreateTemplateDto): Promise<TemplateEntity> {
     return this.createTemplateCommand.execute(data);
   }
 
-  public async find({
-    page,
-    size,
-  }: SearchTemplatesDto): Promise<TemplateEntity[]> {
-    return await this.searchTemplateQuery.execute({
+  public find({ page, size }: SearchTemplatesDto): Promise<TemplateEntity[]> {
+    return this.searchTemplateQuery.execute({
       skip: page,
       take: size,
     });
   }
 
   public async findOne(id: number): Promise<TemplateEntity> {
-    const templates = await this.searchTemplateQuery.execute({
+    const [template] = await this.searchTemplateQuery.execute({
       where: { id: id },
     });
 
-    return templates[0];
+    if (!template) throw new NotFoundException();
+
+    return template;
   }
 }

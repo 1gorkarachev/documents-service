@@ -7,5 +7,6 @@ import { TemplateDataAccessModule } from './dataAccess/template-data-access.modu
   imports: [TemplateDataAccessModule],
   controllers: [TemplateController],
   providers: [TemplateService],
+  exports: [TemplateService],
 })
 export class TemplateModule {}

@@ -3,6 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigDto } from '../config';
 import { TemplateEntity } from 'src/template/dataAccess/entities';
 import { FieldEntity } from 'src/common/entities';
+import {
+  DocumentEntity,
+  DocumentFieldEntity,
+} from 'src/document/dataAccess/entities';
 
 @Module({
   imports: [
@@ -10,7 +14,12 @@ import { FieldEntity } from 'src/common/entities';
       inject: [ConfigDto],
       useFactory: (config: ConfigDto) => ({
         type: 'postgres',
-        entities: [TemplateEntity, FieldEntity],
+        entities: [
+          TemplateEntity,
+          FieldEntity,
+          DocumentEntity,
+          DocumentFieldEntity,
+        ],
         logging: 'all',
         logger: 'debug',
         extra: {
